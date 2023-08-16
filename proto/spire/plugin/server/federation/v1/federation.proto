@@ -1,0 +1,26 @@
+syntax = "proto3";
+package spire.plugin.server.federation.v1;
+option go_package = "github.com/spiffe/spire-plugin-sdk/proto/spire/plugin/server/federation/v1;federationv1";
+
+
+// The Federation plugin send bundle to Galadriel Server.
+service Federation {
+    // PushBundle send bundle to Galadriel Server
+    rpc PushBundle(PushBundleRequest) returns (PushBundleResponse);
+    rpc ApproveRelationship(RelatioshipRequest) returns (RelatioshipResponse);
+}
+
+message PushBundleRequest {
+    string bundle = 1;
+}
+
+message PushBundleResponse {
+}
+
+message RelatioshipRequest {
+    string request_field = 1;
+}
+
+message RelatioshipResponse {
+    string response_field = 1;
+}
