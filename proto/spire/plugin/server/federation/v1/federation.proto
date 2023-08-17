@@ -11,16 +11,17 @@ service Federation {
 }
 
 message PushBundleRequest {
-    string bundle = 1;
+    string request = 1;
 }
 
 message PushBundleResponse {
+    string response = 1;
 }
 
 message RelatioshipRequest {
-    string request_field = 1;
+    string request = 1;
 }
 
 message RelatioshipResponse {
-    string response_field = 1;
+    string response = 1;
 }
