@@ -20,7 +20,7 @@ const _ = grpc.SupportPackageIsVersion7
 type FederationClient interface {
 	// PushBundle send bundle to Galadriel Server
 	PushBundle(ctx context.Context, in *PushBundleRequest, opts ...grpc.CallOption) (*PushBundleResponse, error)
-	ApproveRelationship(ctx context.Context, in *RelatioshipRequest, opts ...grpc.CallOption) (*RelatioshipResponse, error)
+	ApproveRelationship(ctx context.Context, in *RelationshipRequest, opts ...grpc.CallOption) (*RelationshipResponse, error)
 }
 
 type federationClient struct {
@@ -40,8 +40,8 @@ func (c *federationClient) PushBundle(ctx context.Context, in *PushBundleRequest
 	return out, nil
 }
 
-func (c *federationClient) ApproveRelationship(ctx context.Context, in *RelatioshipRequest, opts ...grpc.CallOption) (*RelatioshipResponse, error) {
-	out := new(RelatioshipResponse)
+func (c *federationClient) ApproveRelationship(ctx context.Context, in *RelationshipRequest, opts ...grpc.CallOption) (*RelationshipResponse, error) {
+	out := new(RelationshipResponse)
 	err := c.cc.Invoke(ctx, "/spire.plugin.server.federation.v1.Federation/ApproveRelationship", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -55,7 +55,7 @@ func (c *federationClient) ApproveRelationship(ctx context.Context, in *Relatios
 type FederationServer interface {
 	// PushBundle send bundle to Galadriel Server
 	PushBundle(context.Context, *PushBundleRequest) (*PushBundleResponse, error)
-	ApproveRelationship(context.Context, *RelatioshipRequest) (*RelatioshipResponse, error)
+	ApproveRelationship(context.Context, *RelationshipRequest) (*RelationshipResponse, error)
 	mustEmbedUnimplementedFederationServer()
 }
 
@@ -66,7 +66,7 @@ type UnimplementedFederationServer struct {
 func (UnimplementedFederationServer) PushBundle(context.Context, *PushBundleRequest) (*PushBundleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PushBundle not implemented")
 }
-func (UnimplementedFederationServer) ApproveRelationship(context.Context, *RelatioshipRequest) (*RelatioshipResponse, error) {
+func (UnimplementedFederationServer) ApproveRelationship(context.Context, *RelationshipRequest) (*RelationshipResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ApproveRelationship not implemented")
 }
 func (UnimplementedFederationServer) mustEmbedUnimplementedFederationServer() {}
@@ -101,7 +101,7 @@ func _Federation_PushBundle_Handler(srv interface{}, ctx context.Context, dec fu
 }
 
 func _Federation_ApproveRelationship_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RelatioshipRequest)
+	in := new(RelationshipRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -113,7 +113,7 @@ func _Federation_ApproveRelationship_Handler(srv interface{}, ctx context.Contex
 		FullMethod: "/spire.plugin.server.federation.v1.Federation/ApproveRelationship",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FederationServer).ApproveRelationship(ctx, req.(*RelatioshipRequest))
+		return srv.(FederationServer).ApproveRelationship(ctx, req.(*RelationshipRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

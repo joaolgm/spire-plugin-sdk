@@ -79,7 +79,7 @@ func (p *Plugin) PushBundle(ctx context.Context, req *federationv1.PushBundleReq
 	return nil, status.Error(codes.Unimplemented, "not implemented")
 }
 
-func (p *Plugin) ApproveRelationship(ctx context.Context, req *federationv1.RelatioshipRequest) (*federationv1.RelatioshipResponse, error) {
+func (p *Plugin) ApproveRelationship(ctx context.Context, req *federationv1.RelationshipRequest) (*federationv1.RelationshipResponse, error) {
 	config, err := p.getConfig()
 	if err != nil {
 		return nil, err

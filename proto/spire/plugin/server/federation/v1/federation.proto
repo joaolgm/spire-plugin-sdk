@@ -7,7 +7,7 @@ option go_package = "github.com/spiffe/spire-plugin-sdk/proto/spire/plugin/serve
 service Federation {
     // PushBundle send bundle to Galadriel Server
     rpc PushBundle(PushBundleRequest) returns (PushBundleResponse);
-    rpc ApproveRelationship(RelatioshipRequest) returns (RelatioshipResponse);
+    rpc ApproveRelationship(RelationshipRequest) returns (RelationshipResponse);
 }
 
 message PushBundleRequest {
@@ -18,10 +18,10 @@ message PushBundleResponse {
     string response = 1;
 }
 
-message RelatioshipRequest {
+message RelationshipRequest {
     string request = 1;
 }
 
-message RelatioshipResponse {
+message RelationshipResponse {
     string response = 1;
 }
