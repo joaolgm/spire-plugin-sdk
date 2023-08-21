@@ -2,6 +2,7 @@ package federation
 
 import (
 	"context"
+	"fmt"
 	"sync"
 
 	"github.com/hashicorp/go-hclog"
@@ -66,17 +67,12 @@ func (p *Plugin) BrokerHostServices(broker pluginsdk.ServiceBroker) error {
 }
 
 func (p *Plugin) PushBundle(ctx context.Context, req *federationv1.PushBundleRequest) (*federationv1.PushBundleResponse, error) {
-	config, err := p.getConfig()
-	if err != nil {
-		return nil, err
-	}
+	var pushBundleRes federationv1.PushBundleResponse
 
-	// TODO: Implement the RPC behavior. The following line silences compiler
-	// warnings and can be removed once the configuration is referenced by the
-	// implementation.
-	config = config
+	text := req.GetRequest()
+	fmt.Println(text)
 
-	return nil, status.Error(codes.Unimplemented, "not implemented")
+	return &pushBundleRes, nil
 }
 
 func (p *Plugin) ApproveRelationship(ctx context.Context, req *federationv1.RelationshipRequest) (*federationv1.RelationshipResponse, error) {
